@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.booksearchapp.R
+import com.example.booksearchapp.data.db.BookSearchDatabase
 import com.example.booksearchapp.data.repository.BookSearchRepositoryImpl
 import com.example.booksearchapp.databinding.ActivityMainBinding
 import com.example.booksearchapp.ui.viewmodel.BookSearchViewModel
@@ -34,9 +35,11 @@ class MainActivity : AppCompatActivity() {
              binding.bottomNavigationView.selectedItemId = R.id.fragment_search
          }
         */
+        // jetpackNavigation 사용으로 기존에 객체받아온 것은 주석처리
         setupJetpackNavigation()
 
-        val bookSearchRepository = BookSearchRepositoryImpl()
+        val database = BookSearchDatabase.getInstance(this)
+        val bookSearchRepository = BookSearchRepositoryImpl(database)
         val factory = BookSearchViewModelProviderFactory(bookSearchRepository, this)
         bookSearchViewModel = ViewModelProvider(this, factory)[BookSearchViewModel::class.java]
     }
