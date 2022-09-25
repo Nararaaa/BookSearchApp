@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.booksearchapp.databinding.FragmentFavoriteBinding
 import com.example.booksearchapp.ui.adapter.BookSearchAdapter
 import com.example.booksearchapp.ui.viewmodel.BookSearchViewModel
+import com.example.booksearchapp.util.collectLatestStateFlow
 import com.google.android.material.snackbar.Snackbar
 
 class FavoriteFragment : Fragment() {
@@ -38,7 +39,25 @@ class FavoriteFragment : Fragment() {
         setupRecyclerView()
         setupTouchHelper(view)
 
-        bookSearchViewModel.favoriteBooks.observe(viewLifecycleOwner) {
+        /*  bookSearchViewModel.favoriteBooks.observe(viewLifecycleOwner) {
+              bookSearchAdapter.submitList(it)
+
+        // Query결과 표시도 Flow로 변경 (코루틴 안에서 변경)
+        lifecycleScope.launch {
+            bookSearchViewModel.favoriteBooks.collectLatest {
+                bookSearchAdapter.submitList(it)
+            }
+
+        // StateFlow로 변경
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                bookSearchViewModel.favoriteBooks.collectLatest {
+                    bookSearchAdapter.submitList(it)
+                }
+            }
+        }*/
+        // 코루틴 확장함수 사용
+        collectLatestStateFlow(bookSearchViewModel.favoriteBooks) {
             bookSearchAdapter.submitList(it)
         }
     }
