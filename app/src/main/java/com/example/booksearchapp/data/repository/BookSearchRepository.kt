@@ -20,4 +20,10 @@ interface BookSearchRepository {
     suspend fun deleteBooks(book: Book)
 
     fun getFavoriteBooks(): Flow<List<Book>>
+
+    // DataStore (값을 저장하고 불러오는 메소드)
+    suspend fun saveSortMode(mode: String)
+
+    suspend fun getSortMode(): Flow<String>
+
 }
