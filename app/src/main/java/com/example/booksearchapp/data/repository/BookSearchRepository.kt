@@ -30,4 +30,6 @@ interface BookSearchRepository {
     // Paging
     fun getFavoritePagingBooks(): Flow<PagingData<Book>>
 
+    // pager가 pagingSource 결과를 pagingData로 변환하기위한 메소드
+    fun searchBooksPaging(query: String, sort: String): Flow<PagingData<Book>>
 }
