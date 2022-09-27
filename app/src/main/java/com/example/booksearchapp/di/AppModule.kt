@@ -75,7 +75,11 @@ object AppModule {
 
     // WorkManager 의존성 생성
     @Singleton
+    @Provides
     fun provideWorkManager(@ApplicationContext context: Context): WorkManager =
         WorkManager.getInstance(context)
 
+    @Singleton
+    @Provides
+    fun provideCacheDeleteResult(): String = "Cache has deleted by Hilt"
 }

@@ -1,14 +1,7 @@
 package com.example.booksearchapp.ui.viewmodel
 
-import android.os.Bundle
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.savedstate.SavedStateRegistryOwner
-import androidx.work.WorkManager
-import com.example.booksearchapp.data.repository.BookSearchRepository
-
-@Suppress("UNCHECKED_CAST")
+// 뷰모델을 델리게이트로 생성하기에 뷰모델 팩토리는 별도로 필요없어서 정리
+//@Suppress("UNCHECKED_CAST")
 /*class BookSearchViewModelProviderFactory(
     private val bookSearchRepository: BookSearchRepository
 ) : ViewModelProvider.Factory {
@@ -19,6 +12,7 @@ import com.example.booksearchapp.data.repository.BookSearchRepository
         throw IllegalArgumentException("ViewModel class not found")
     }
 }*/
+/*
 class BookSearchViewModelProviderFactory(
     private val bookSearchRepository: BookSearchRepository,
     private val workManager: WorkManager,
@@ -35,4 +29,4 @@ class BookSearchViewModelProviderFactory(
         }
         throw IllegalArgumentException("viewModel class not found")
     }
-}
+}*/
