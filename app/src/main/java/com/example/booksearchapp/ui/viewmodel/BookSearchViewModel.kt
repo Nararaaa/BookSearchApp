@@ -1,21 +1,7 @@
 package com.example.booksearchapp.ui.viewmodel
 
-import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import androidx.work.*
-import com.example.booksearchapp.data.model.Book
-import com.example.booksearchapp.data.model.SearchResponse
-import com.example.booksearchapp.data.repository.BookSearchRepository
-import com.example.booksearchapp.data.worker.CacheDeleteWorker
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-
+// 뷰와 뷰모델을 분리했기때문에 필요가 없어 주석처리리
+/*
 @HiltViewModel
 class BookSearchViewModel @Inject constructor(
     private val bookSearchRepository: BookSearchRepository,
@@ -30,7 +16,7 @@ class BookSearchViewModel @Inject constructor(
     fun searchBooks(query: String) = viewModelScope.launch(Dispatchers.IO) {
         val response = bookSearchRepository.searchBooks(query, getSortMode(), 1, 15)
         if (response.isSuccessful) {
-            response.body()?.let { body ->
+            response.body()?.lt { body ->
                 _searchResult.postValue(body)
             }
         }
@@ -124,4 +110,4 @@ class BookSearchViewModel @Inject constructor(
     fun getWorkStatus(): LiveData<MutableList<WorkInfo>> =
         workManager.getWorkInfosForUniqueWorkLiveData(WORKER_KEY)
 
-}
+}*/

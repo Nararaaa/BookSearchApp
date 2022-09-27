@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booksearchapp.databinding.FragmentSearchBinding
 import com.example.booksearchapp.ui.adapter.BookSearchLoadStateAdapter
 import com.example.booksearchapp.ui.adapter.BookSearchPagingAdapter
-import com.example.booksearchapp.ui.viewmodel.BookSearchViewModel
+import com.example.booksearchapp.ui.viewmodel.SearchViewModel
 import com.example.booksearchapp.util.Constants.SEARCH_BOOKS_TIME_DELAY
 import com.example.booksearchapp.util.collectLatestStateFlow
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +29,8 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     //private lateinit var bookSearchViewModel: BookSearchViewModel
-    private val bookSearchViewModel by activityViewModels<BookSearchViewModel>()
+    //private val bookSearchViewModel by activityViewModels<BookSearchViewModel>()
+    private val searchViewModel by viewModels<SearchViewModel>()
 
     //private lateinit var bookSearchAdapter: BookSearchAdapter
     private lateinit var bookSearchAdapter: BookSearchPagingAdapter
@@ -56,7 +57,7 @@ class SearchFragment : Fragment() {
             bookSearchAdapter.submitList(books)
         }*/
         // searchResult가 아닌 searchPagingResult로 사용하기(확장함수)
-        collectLatestStateFlow(bookSearchViewModel.searchPagingResult) {
+        collectLatestStateFlow(searchViewModel.searchPagingResult) {
             bookSearchAdapter.submitData(it)
         }
     }
@@ -90,7 +91,7 @@ class SearchFragment : Fragment() {
         var endTime: Long
 
         binding.etSearch.text =
-            Editable.Factory.getInstance().newEditable(bookSearchViewModel.query)
+            Editable.Factory.getInstance().newEditable(searchViewModel.query)
 
         binding.etSearch.addTextChangedListener { text: Editable? ->
             endTime = System.currentTimeMillis()
@@ -102,8 +103,8 @@ class SearchFragment : Fragment() {
                         //bookSearchViewModel.query = query
 
                         lifecycleScope.launch {
-                            bookSearchViewModel.searchBooksPaging(query)
-                            bookSearchViewModel.query = query
+                            searchViewModel.searchBooksPaging(query)
+                            searchViewModel.query = query
                         }
                     }
                 }

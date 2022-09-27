@@ -10,7 +10,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.booksearchapp.R
 import com.example.booksearchapp.databinding.ActivityMainBinding
-import com.example.booksearchapp.ui.viewmodel.BookSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +17,8 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    lateinit var bookSearchViewModel: BookSearchViewModel
+
+    //lateinit var bookSearchViewModel: BookSearchViewModel
     private lateinit var navController: NavController
 
     // 앱바에 있는 타이틀 수정
