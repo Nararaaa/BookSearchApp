@@ -1,8 +1,6 @@
 package com.example.booksearchapp.data.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.booksearchapp.data.model.Book
@@ -17,6 +15,8 @@ abstract class BookSearchDatabase : RoomDatabase() {
 
     abstract fun bookSearchDao(): BookSearchDao
 
+// 앱모듈에서 싱글톤으로 만들기때문에 해당 클래스에서 수동생성할 필요없음
+/*
     companion object {
         @Volatile
         private var INSTANCE: BookSearchDatabase? = null
@@ -33,4 +33,6 @@ abstract class BookSearchDatabase : RoomDatabase() {
                 INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
             }
     }
+
+ */
 }
