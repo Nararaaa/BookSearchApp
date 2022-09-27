@@ -22,10 +22,16 @@ interface BookSearchRepository {
 
     fun getFavoriteBooks(): Flow<List<Book>>
 
-    // DataStore (값을 저장하고 불러오는 메소드)
+    // DataStore 
+    // 값을 저장하고 불러오는 메소드
     suspend fun saveSortMode(mode: String)
 
     suspend fun getSortMode(): Flow<String>
+
+    // 버튼 설정을 저장하는 메소드
+    suspend fun saveCacheDeleteMode(mode: Boolean)
+
+    suspend fun getCacheDeleteMode(): Flow<Boolean>
 
     // Paging
     fun getFavoritePagingBooks(): Flow<PagingData<Book>>
